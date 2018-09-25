@@ -4537,7 +4537,7 @@ def process_workshop_tutors_data():
     print('\nProcessing Workshop Tutors Data Upload Form.')
     # Confirm the required files are in place
     required_files = ['Workshop Tutors Data File', 'Workshop_Tutors.csv',
-                      'Course_IDs.csv', 'Tutor_Ids.csv']
+                      'Workshop_IDs.csv', 'Tutor_Ids.csv']
     ad.confirm_files('Workshop Tutor Data', required_files)
     # Get name for Workshop Tutor Data File and then load
     wt_data, to_add, warnings_to_add = load_data('Workshop Tutor Data')
