@@ -574,7 +574,6 @@ the app to run:
 
 - Get updated file name when processing results
 - Remove final comma from output of ADV processing
-- Check if a leading 0 is being added to mobile numbers
 
 ## Current development step
 
