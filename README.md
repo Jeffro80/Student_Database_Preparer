@@ -17,7 +17,8 @@ update the required tables.
 ## Version
 
 Version Number 1.0  
-Last updated 25 September 2018
+App last updated 25 September 2018
+Readme last updated 2 October 2018
 
 # Operation
 
@@ -577,7 +578,7 @@ the app to run:
 
 ## Current development step
 
-- ADVResults processing
+- ADV Results processing
 
 ## Required development steps
 
