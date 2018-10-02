@@ -586,6 +586,11 @@ the app to run:
 
 ## Future additions
 
+- Add function: Filter students by course (e.g. for withdrawn students in Results
+functions)
+- Add function: Extract students not already in Results table (e.g. for Results
+functions)
+- Add function: Compare Results_update students with Master_Results file
 - Group warnings by warning type e.g. Mobile number
 - Add progress status to processes that take a while to run
 - Graduates certificate - strip and remove any spaces
