@@ -18,7 +18,7 @@ update the required tables.
 
 Version Number 1.0  
 App last updated 25 September 2018
-Readme last updated 2 October 2018
+Readme last updated 3 October 2018
 
 # Operation
 
@@ -97,7 +97,7 @@ Prepares the upload file for updating the Enrolments table in the Student Databa
 
 ### Required Files
 
-- Course_Ids.csv
+- Course_IDs.csv
 - Enrolment Data Sheet
 - Student_IDs.csv
 - Tutor_IDs.csv
@@ -120,7 +120,7 @@ Database.
 
 ### Required Files
 
-- Student-Workshop File
+- Students_Workshop File
 - Workshop Attendance Data File
 - Workshop_IDs.csv
 
@@ -151,6 +151,8 @@ Database.
 Prepares the upload file for updating the ResultsADV table in the Student 
 Database.
 
+NOTE: Function needs rewriting.
+
 ### Required Files
 
 - Course Assessment Data File
@@ -175,6 +177,10 @@ ADV Course.
 
 ## Combined Data File
 
+### File Name
+
+cdf.csv
+
 ### Structure
 
 CSV file with Student ID column followed by each column of data from the Enrolment
@@ -193,6 +199,10 @@ Form).
 
 ## Course Assessment Data File
 
+### File Name
+
+\<TBC>
+
 ### Structure
 
 \<TBC>
@@ -206,6 +216,10 @@ Form).
 \<TBC>
 
 ## Course Attendance Data File
+
+### File Name
+
+<course_code>.csv where <course_code> is the full course code, e.g. ADV-PT-003.
 
 ### Structure
 
@@ -222,6 +236,10 @@ Course Attendance tab of the Enrolments Google sheet.
 
 ## Course Tutors Data File
 
+### File Name
+
+ct.csv
+
 ### Structure
 
 CSV file with Course Tutors data. Columns are the same as the Course Tutors table
@@ -237,6 +255,8 @@ Course Tutors tab of the Enrolments Google sheet.
 
 ## Course_IDs.csv
 
+Course_IDs.csv
+
 ### Structure
 
 CSV file with Course Code and the Course Date information.
@@ -251,6 +271,10 @@ Student Database.
 Courses tab of the Enrolments Google sheet - Course Code and Form Text columns.
 
 ## Course_Tutors.csv
+
+### File Name
+
+Course_Tutors.csv
 
 ### Structure
 
@@ -268,6 +292,10 @@ Course Tutors table in the Student Database.
 
 ## Courses Data File
 
+### File Name
+
+coursedata.csv
+
 ### Structure
 
 CSV file with Course data. Columns are the same as the Courses table in the
@@ -281,7 +309,11 @@ Course details for courses to be added to the Student Database.
 
 Courses tab of the Enrolments Google sheet.
 
-## Dates File
+## dates.csv
+
+### File Name
+
+dates.csv
 
 ### Structure
 
@@ -297,6 +329,10 @@ Dates that the course was held on.
 Course Attendance Data File.
 
 ## Enrolment_Codes.csv
+
+### File Name
+
+Enrolment_Codes.csv
 
 ### Structure
 
@@ -314,6 +350,10 @@ Enrolments table of the Student Database.
 
 ## enrolment_ids.csv
 
+### File Name
+
+enrolment_ids.csv
+
 ### Structure
 
 CSV file with the Enrolment ID, Student ID, NameGIven, NameSurname, CoursePK,
@@ -328,6 +368,10 @@ Enrolment details of each student in the Enrolments table of the Student Databas
 qryEnrolmentDetailsAll query in the Student Database.
 
 ## Enrolment Data Sheet
+
+### File Name
+
+es.csv
 
 ### Structure
 
@@ -345,6 +389,10 @@ Enrolments tab of the Enrolments Google sheet.
 
 ## Extensions Data File
 
+### File Name
+
+extensions.csv
+
 ### Structure
 
 CSV file with the Extensions data. Columns are Student ID, Name, Enrolment Code,
@@ -360,6 +408,10 @@ Database.
 Extensions sheet of the Enrolments Google sheet.
 
 ## Extension_Codes.csv
+
+### File Name
+
+Extension_Codes.csv
 
 ### Structure
 
@@ -377,6 +429,10 @@ Extensions table of the Student Database.
 
 ## Graduate Data File
 
+### File Name
+
+grads.csv
+
 ### Structure
 
 CSV file with the Graduate data. Columns are Student ID, Name, Enrolment Code,
@@ -392,6 +448,10 @@ Database.
 Graduates sheet of the Enrolments Google sheet.
 
 ## Graduates_Current.csv
+
+### File Name
+
+Graduates_Current.csv
 
 ### Structure
 
@@ -409,6 +469,10 @@ Graduates table of the Student Database.
 
 ## Student-Course File
 
+### File Name
+
+scc.csv
+
 ### Structure
 
 CSV file with the Student ID and Course ID for all students enrolled in a course.
@@ -422,7 +486,11 @@ the Student Database.
 
 Enrolments table of the Student Database.
 
-## Student-Workshop File
+## Students_Workshop File
+
+### File Name
+
+swc.csv
 
 ### Structure
 
@@ -440,6 +508,10 @@ Workshop Attendance table of the Student Database.
 
 ## Student_IDs.csv
 
+### File Name
+
+Student_IDs.csv
+
 ### Structure
 
 CSV file with the Student ID, NameGIven and NameSurname for each student in the
@@ -455,6 +527,10 @@ Students table of the Student Database.
 
 ## Tutor Data File
 
+### File Name
+
+tutors.csv
+
 ### Structure
 
 CSV file with the Tutor ID, First Name, Last Name, Email, Phone Number.
@@ -469,6 +545,10 @@ Tutors sheet of the Enrolments Google sheet.
 
 ## Tutor_IDs.csv
 
+### File Name
+
+Tutor_IDs.csv
+
 ### Structure
 
 CSV file with the Tutor ID, First Name, Last Name.
@@ -482,6 +562,10 @@ Tutor details for tutors currently in the Student Database (Tutors table).
 Tutors table of the Student Database.
 
 ## Workshop Attendance Data File
+
+### File Name
+
+workshopatt.csv
 
 ### Structure
 
@@ -498,6 +582,10 @@ Workshop Attendance tab of the Enrolments Google sheet.
 
 ## Workshop Tutors Data File
 
+### File Name
+
+Workshop_Tutors.csv
+
 ### Structure
 
 CSV file with Workshop Tutors data. Columns are the same as the Workshop Tutors
@@ -513,6 +601,10 @@ Workshop Tutors tab of the Enrolments Google sheet.
 
 ## Workshop_IDs.csv
 
+### File Name
+
+Workshop_IDs.csv
+
 ### Structure
 
 CSV file with Workshop Code and the Workshop Name information.
@@ -526,6 +618,10 @@ Workshop details for workshops currently in the Student Database (Workshops tabl
 Workshops table in the Student Database.
 
 ## Workshop_Tutors.csv
+
+### File Name
+
+Workshop_Tutors.csv
 
 ### Structure
 
@@ -541,6 +637,10 @@ Workshop tutor details for workshop tutors currently in the Student Database.
 Workshop Tutors table in the Student Database.
 
 ## Workshops Data File
+
+### File Name
+
+workshops.csv
 
 ### Structure
 
@@ -597,3 +697,4 @@ functions)
 - Graduates certificate - strip and remove any spaces
 - Course attendance - take course code and use in save file name rather than time
 - Remove warning for Course date missing for ADV-ON-001
+- Update file names (e.g. replace Tutor_IDs.csv with Tutor IDs)
