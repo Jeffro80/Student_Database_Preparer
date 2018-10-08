@@ -18,7 +18,7 @@ update the required tables.
 
 Version Number 1.0  
 App last updated 25 September 2018  
-Readme last updated 4 October 2018
+Readme last updated 9 October 2018
 
 # Operation
 
@@ -30,6 +30,85 @@ line
 dialog.
 
 # Functions
+
+## Prepare ADV Course Assessment Table Data
+
+Prepares the upload file for updating the ResultsADV table in the Student 
+Database.
+
+### Required Files
+
+- Course Assessment Data File
+- Assessments File
+- Enrolment IDs File
+
+### Notes
+
+Function needs rewriting.
+
+## Prepare Course Attendance Table Data
+
+Prepares the upload file for updating the Course Attendance table in the Student Database.
+
+### Required Files
+
+- Course Attendance Data File
+- Course IDs File
+- Student_Course File
+- Dates File
+
+## Prepare Course Tutors Table Data
+
+Prepares the upload file for updating the Course Tutors table in the Student Database.
+
+### Required Files
+
+- Course Tutors Data File
+- Course IDs File
+- Course Tutors File
+- Tutor IDs File
+
+## Prepare Courses Table Data
+
+Prepares the upload file for updating the Courses table in the Student Database.
+
+### Required Files
+
+- Course IDs File
+- Courses Data File
+
+## Prepare Enrolments Table Data
+
+Prepares the upload file for updating the Enrolments table in the Student Database.
+
+### Required Files
+
+- Course IDs File
+- Enrolment Data Sheet
+- Student IDs File
+- Tutor IDs File
+
+## Prepare Extensions Table Data
+
+Prepares the upload file for updating the Extensions table in the Student 
+Database.
+
+### Required Files
+
+- Enrolment Codes File
+- Extension Codes File
+- Extensions Data
+
+## Prepare Graduates Table Data
+
+Prepares the upload file for updating the Graduates table in the Student 
+Database.
+
+### Required Files
+
+- Enrolment Codes File
+- Graduate Data
+- Graduates Current File
 
 ## Prepare Students Table Data
 
@@ -51,34 +130,16 @@ Prepares the upload file for updating the Tutors table in the Student Database.
 - Tutor Data File
 - Tutor IDs File
 
-## Prepare Courses Table Data
+## Prepare Workshop Attendance Table Data
 
-Prepares the upload file for updating the Courses table in the Student Database.
-
-### Required Files
-
-- Course IDs File
-- Courses Data File
-
-## Prepare Workshops Table Data
-
-Prepares the upload file for updating the Workshops table in the Student Database.
+Prepares the upload file for updating the Workshop Attendance table in the Student 
+Database.
 
 ### Required Files
 
-- Workshops Data File
+- Students_Workshop File
+- Workshop Attendance Data File
 - Workshop IDs File
-
-## Prepare Course Tutors Table Data
-
-Prepares the upload file for updating the Course Tutors table in the Student Database.
-
-### Required Files
-
-- Course Tutors Data File
-- Course IDs File
-- Course Tutors File
-- Tutor IDs File
 
 ## Prepare Workshop Tutors Table Data
 
@@ -91,75 +152,14 @@ Prepares the upload file for updating the Workshop Tutors table in the Student D
 - Workshop Tutors Data File
 - Workshop Tutors File
 
-## Prepare Enrolments Table Data
+## Prepare Workshops Table Data
 
-Prepares the upload file for updating the Enrolments table in the Student Database.
-
-### Required Files
-
-- Course IDs File
-- Enrolment Data Sheet
-- Student IDs File
-- Tutor IDs File
-
-## Prepare Course Attendance Table Data
-
-Prepares the upload file for updating the Course Attendance table in the Student Database.
+Prepares the upload file for updating the Workshops table in the Student Database.
 
 ### Required Files
 
-- Course Attendance Data File
-- Course IDs File
-- Student_Course File
-- Dates File
-
-## Prepare Workshop Attendance Table Data
-
-Prepares the upload file for updating the Workshop Attendance table in the Student 
-Database.
-
-### Required Files
-
-- Students_Workshop File
-- Workshop Attendance Data File
+- Workshops Data File
 - Workshop IDs File
-
-## Prepare Graduates Table Data
-
-Prepares the upload file for updating the Graduates table in the Student 
-Database.
-
-### Required Files
-
-- Enrolment Codes File
-- Graduate Data
-- Graduates Current File
-
-## Prepare Extensions Table Data
-
-Prepares the upload file for updating the Extensions table in the Student 
-Database.
-
-### Required Files
-
-- Enrolment Codes File
-- Extension Codes File
-- Extensions Data
-
-## Prepare ADV Course Assessment Table Data
-
-Prepares the upload file for updating the ResultsADV table in the Student 
-Database.
-
-### Required Files
-
-- Course Assessment Data File
-- Assessments File
-- Enrolment IDs File
-
-### Notes
-
-Function needs rewriting.
 
 # Files used
 
