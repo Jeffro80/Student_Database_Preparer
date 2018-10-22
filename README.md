@@ -17,8 +17,8 @@ update the required tables.
 ## Version
 
 Version Number 1.0  
-App last updated 25 September 2018  
-Readme last updated 9 October 2018
+App last updated 23 October 2018  
+Readme last updated 23 October 2018
 
 # Operation
 
@@ -688,10 +688,12 @@ the app to run:
 
 ## Current development step
 
-- ADV Results processing
+- ADV Results processing (Finding students to add)
 
 ## Required development steps
 
+- Find students to add to Results table
+- Prepare Results Table File Upload
 - Add loading and loaded statements to Extensions and Graduates processing
 
 ## Future additions

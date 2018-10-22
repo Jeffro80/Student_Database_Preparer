@@ -3722,7 +3722,7 @@ def load_data(source, f_name=''):
 def main():
     repeat = True
     low = 1
-    high = 15
+    high = 16
     while repeat:
         try_again = False
         main_message()
@@ -3766,6 +3766,8 @@ def main():
                 process_extensions_data()
             elif action == 14:
                 process_adv()
+            elif action == 15:
+                process_find_students()
             elif action == high:
                 print('\nIf you have generated any files, please find them '
                       'saved to disk. Goodbye.')
@@ -3794,8 +3796,9 @@ def main_message():
     print('11 Prepare Graduates Table Data')
     print('12 Prepare Existing Students Table Data')
     print('13 Prepare Extensions Table Data')
-    print('14 Prepare ADV Course Assessments')
-    print('15 Exit')
+    print('14 Prepare ADV Results Table Data')
+    print('15 Find Students to add to Results Table')
+    print('16 Exit')
 
 
 def preferred_contact(mobile_pref, email_pref):
@@ -3823,7 +3826,12 @@ def preferred_contact(mobile_pref, email_pref):
 
 
 def process_adv():
+    """To Be written"""
+    
+
+def process_adv_archive():
     """Prepare upload file for ADV assessments."""
+    # TO BE REWRITTEN
     warnings = ['\nProcessing ADV Assessment Data Warnings:\n']
     warnings_to_process = False
     print('\nProcessing ADV Assessments.')
@@ -4187,6 +4195,10 @@ def process_extensions_data():
     # Save Extensions Data upload file
     ft.save_lists_to_text(updated_ext, headings, 'Extensions_Data_')
     ft.process_warning_log(warnings, warnings_to_process)
+
+
+def process_find_students():
+    """To be written"""
 
 
 def process_graduates():
