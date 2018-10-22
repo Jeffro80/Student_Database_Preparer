@@ -1,5 +1,5 @@
 # Access Data - Student Database
-# Version 1.0 25 September 2018
+# Version 1.0 23 October 2018
 # Created by Jeff Mitchell
 # Takes in data files and prepares them for uploading into the
 # Student Database
@@ -2586,6 +2586,25 @@ def get_citizenship(cit_col, oth_col):
     return citizenship
 
 
+def get_course_code():
+    """Gets a course code from the user."""
+    # Load list of allowed course codes
+    valid_codes = ft.load_headings('Course_codes', 'e')
+    # Get selection and make sure it is a valid course
+    while True:
+        code = input('\nWhat is the code for the course? Alternatively, type q'
+                     ' to quit: ')
+        if code == 'q':
+            print('\nProgram cancelled. Goodbye.')
+            sys.exit()
+        elif code in valid_codes:
+            return code
+        else:
+            print('\nThat is not a valid code. The course must be present in '
+                  'the list of valid courses (Course_codes.txt). If it is not'
+                  ', please quit and add it.')   
+
+
 def get_course_data(cd):
     """Prepare data for Course table upload file.
 
@@ -4198,7 +4217,35 @@ def process_extensions_data():
 
 
 def process_find_students():
-    """To be written"""
+    """Find students that need to be added to the Results table.
+    
+    Checks the expiry date of students to determine those that need to be
+    added to the Results table (> 1 month passed since expiry).
+    Removes students not in the base course and then removes students that have
+    already been added. Returns a list of students (Enrolment ID) that need to
+    be added and saves this as a txt file.    
+    """
+    print('\nProcessing Finding Students.')
+    # Confirm the required files are in place
+    required_files = ['Expiry Dates', 'Cuurent Results Table Students']
+    ad.confirm_files('Find Students Data', required_files)
+    # Get course code to process (base code)
+    # Load Expiry Dates file
+    # Load Current Results Table Students File
+    # Check that all students in are base course - save error report and exit
+    # if students are found that are not in the base course
+    # Drop students status not in Expired, Graduated, Withdrawn
+    # Drop students already in results table
+    # Place graduated students into a DataFrame and drop from expiry dates data
+    # Place expired students into a DataFrame and drop from expiry dates data
+    # Place withdrawn students into a DataFrame
+    # Place all remaining Graduated students into students list
+    # Place all remaining Withdrawn students into students list
+    # Drop expired students that expired < 1 month ago
+    # Place all remaining Expired students into students list
+    # Display students in students list
+    # Save students list as a text file.
+    
 
 
 def process_graduates():

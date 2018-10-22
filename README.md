@@ -161,6 +161,17 @@ Prepares the upload file for updating the Workshops table in the Student Databas
 - Workshops Data File
 - Workshop IDs File
 
+## Find Students to add to Results Table
+
+Prepares a list of students that need to be added to the Results table in the
+Student Database.
+
+### Required Files
+
+- Course Codes File
+- Current Results Table Students File
+- Expiry Dates File
+
 # Files used
 
 ## Assessments File
@@ -241,24 +252,23 @@ of the course. Each day should be the date of the session.
 
 Course Attendance tab of the Enrolments Google sheet.
 
-## Course Tutors Data File
+## Course Codes File
 
 ### File Name
 
-ct.csv
+Course_codes.txt
 
 ### Contents
 
-Course tutor details for course tutors to be added to the Student Database.
+Base course codes for each course in the Student Database, e.g. ADV.
 
 ### Structure
 
-CSV file with Course Tutors data. Columns are the same as the Course Tutors table
-in the Student Database.
+TXT file with base code for each course on one line, separated by commas.
 
 ### Source
 
-Course Tutors tab of the Enrolments Google sheet.
+Courses table of the Student Database.
 
 ## Course IDs File
 
@@ -278,6 +288,25 @@ CSV file with Course Code and the Course Date information.
 ### Source
 
 Courses tab of the Enrolments Google sheet - Course Code and Form Text columns.
+
+## Course Tutors Data File
+
+### File Name
+
+ct.csv
+
+### Contents
+
+Course tutor details for course tutors to be added to the Student Database.
+
+### Structure
+
+CSV file with Course Tutors data. Columns are the same as the Course Tutors table
+in the Student Database.
+
+### Source
+
+Course Tutors tab of the Enrolments Google sheet.
 
 ## Course Tutors File
 
@@ -317,6 +346,24 @@ Student Database.
 ### Source
 
 Courses tab of the Enrolments Google sheet.
+
+## Current Results Table Students File
+
+### File Name
+
+Current_Results_Students.txt
+
+### Contents
+
+EnrolmentID for each student currently in the Results Table.
+
+### Structure
+
+TXT file with each EnrolmentFK on one line, separated by a comma.
+
+### Source
+
+EnrolmentPK column of the Results Table in the Student Database.
 
 ## Dates File
 
@@ -395,6 +442,21 @@ Enrolments Google sheet.
 ### Source
 
 Enrolments tab of the Enrolments Google sheet.
+
+## Expiry Dates File
+
+### File Name
+
+expiry_dates.csv
+
+### Contents
+
+Expiry information from the qryExpiryDates query from the Student Database.
+Contains EnrolmentPK, CourseFK, ExpiryDate, Status.
+
+### Structure
+
+CSV file with the expiry date data for students in the Student Database.   
 
 ## Extensions Data File
 
