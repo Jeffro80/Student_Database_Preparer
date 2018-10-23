@@ -2478,6 +2478,23 @@ def create_codes(received_codes):
     return processed_codes
 
 
+def drop_existing(expiry_data, current_students):
+    """Remove students already in the Results table.
+    
+    Args:
+        expiry_data (list): List of lists of expiry date data.
+        current_students (list): List of students currently in Results table.
+        
+    Returns:
+        updated_expiry_data (list): List of data to be kept.
+    """
+    updated_expiry_data = []
+    for student in expiry_data:
+        if student[0] not in current_students:
+            updated_expiry_data.append(student)
+    return updated_expiry_data
+
+
 def drop_status(expiry_data):
     """Remove students without status of Graduated, Expired or Withdrawn.
     
@@ -4336,9 +4353,12 @@ def process_find_students():
     current_students = ft.load_headings('Current_Results_Students', 'e')
     # Check that all students are in base course
     check_course(expiry_data, course_code)
-    # Drop students who status not in Expired, Graduated, Withdrawn
+    # Drop students whose status is not in Expired, Graduated, Withdrawn
     expiry_data = drop_status(expiry_data)
     # Drop students already in results table
+    print('Length of expiry data before processing: {}'.format(len(expiry_data)))
+    expiry_data = drop_existing(expiry_data, current_students)
+    print('Length of expiry data after processing: {}'.format(len(expiry_data)))
     # Place graduated students into a DataFrame and drop from expiry dates data
     # Place expired students into a DataFrame and drop from expiry dates data
     # Place withdrawn students into a DataFrame
