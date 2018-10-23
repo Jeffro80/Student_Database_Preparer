@@ -4536,11 +4536,27 @@ def process_results_table():
     required_files = ['Master Results File', 'Master Results Headings File',
                       'Students to add File', 'Course Codes']
     ad.confirm_files('Results Table Data', required_files)
-    # Load Course Codes file
     # Get course code
+    course_code = get_course_code()
     # Load Master Results file
-    # Load Master Results Headings file
+    print('\nLoading {}...'.format('Master_Results_{}.csv'.format(
+            course_code)))
+    master_data = ft.load_csv('Master_Results_{}.csv'.format(course_code))
+    print('Loaded {}.'.format('Master_Results_{}.csv'.format(course_code)))
+    # Load Master headings file
+    print('\nLoading {}...'.format('Master_Results_Headings_{}'.format
+          (course_code)))
+    master_headings = ft.load_headings('Master_Results_Headings_{}'.format
+                                       (course_code), 'e')
+    print('Loaded {}.'.format('Master_Results_Headings_{}'.format
+          (course_code)))
     # Load Students to add file
+    print('\nLoading {}...'.format('Students_to_add_{}.txt'.format(
+            course_code)))
+    include_students = ft.load_headings('Students_to_add_{}'.format
+                                       (course_code), 'e')
+    print('Loaded {}.'.format('Students_to_add_{}.txt'.format
+          (course_code)))
     # Place Master Results into a DataFrame
     # Drop StudentID, Name, Course columns
     # Drop students not in Students to add file
