@@ -2478,6 +2478,24 @@ def create_codes(received_codes):
     return processed_codes
 
 
+def drop_status(expiry_data):
+    """Remove students without status of Graduated, Expired or Withdrawn.
+    
+    Args:
+        expiry_data (list): List of lists of expiry date data.
+        
+    Returns:
+        updated_expiry_data (list): List of data to be kept.
+    """
+    updated_expiry_data = []
+    # List of statuses to keep in data
+    allowed_status = ['Graduated', 'Expired', 'Withdrawn']
+    for student in expiry_data:
+        if student[3] in allowed_status:
+            updated_expiry_data.append(student)
+    return updated_expiry_data    
+
+
 def extract_source_tutor(source_data, source_pos):
     """Extract a single Course or Workshop - Tutor pairing.
 
@@ -4316,12 +4334,10 @@ def process_find_students():
             warnings.append(line)
     # Load Current Results Table Students File
     current_students = ft.load_headings('Current_Results_Students', 'e')
-    print('Current students:')
-    print('{}'.format(current_students))
-    # Check that all students are in base course - save error report and exit
+    # Check that all students are in base course
     check_course(expiry_data, course_code)
-    # if students are found that are not in the base course
-    # Drop students status not in Expired, Graduated, Withdrawn
+    # Drop students who status not in Expired, Graduated, Withdrawn
+    expiry_data = drop_status(expiry_data)
     # Drop students already in results table
     # Place graduated students into a DataFrame and drop from expiry dates data
     # Place expired students into a DataFrame and drop from expiry dates data
