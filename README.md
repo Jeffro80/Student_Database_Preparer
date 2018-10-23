@@ -17,8 +17,8 @@ update the required tables.
 ## Version
 
 Version Number 1.0  
-App last updated 23 October 2018  
-Readme last updated 23 October 2018
+App last updated 24 October 2018  
+Readme last updated 24 October 2018
 
 # Operation
 
@@ -31,7 +31,7 @@ dialog.
 
 # Functions
 
-## Prepare ADV Course Assessment Table Data
+## Prepare ADV Results Table Data
 
 Prepares the upload file for updating the ResultsADV table in the Student 
 Database.
@@ -110,6 +110,21 @@ Database.
 - Graduate Data
 - Graduates Current File
 
+## Prepare Results Students File
+
+Prepares a list of students (Enrolment ID's) that need to be added to the Results table
+in the Student Database.
+
+### Required Files
+
+- Course Codes File
+- Current Results Table Students File
+- Expiry Dates File
+
+### Notes
+
+- Output file requires last comma to be manually deleted.
+
 ## Prepare Students Table Data
 
 Prepares the upload file for updating the Students table in the Student Database.
@@ -160,17 +175,6 @@ Prepares the upload file for updating the Workshops table in the Student Databas
 
 - Workshops Data File
 - Workshop IDs File
-
-## Find Students to add to Results Table
-
-Prepares a list of students that need to be added to the Results table in the
-Student Database.
-
-### Required Files
-
-- Course Codes File
-- Current Results Table Students File
-- Expiry Dates File
 
 # Files used
 
