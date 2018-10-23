@@ -3931,7 +3931,7 @@ def main():
             elif action == 13:
                 process_extensions_data()
             elif action == 14:
-                process_adv()
+                process_results_table()
             elif action == 15:
                 process_results_students()
             elif action == high:
@@ -3962,7 +3962,7 @@ def main_message():
     print('11 Prepare Graduates Table Data')
     print('12 Prepare Existing Students Table Data')
     print('13 Prepare Extensions Table Data')
-    print('14 Prepare ADV Results Table Data')
+    print('14 Prepare Results Table Data')
     print('15 Prepare Results Students File')
     print('16 Exit')
 
@@ -3990,25 +3990,6 @@ def preferred_contact(mobile_pref, email_pref):
         preference = ''
     return preference
 
-
-def process_adv():
-    """Prepare upload file for ADV Results Table."""
-    warnings = ['\nProcessing ADV Results Table Data Warnings:\n']
-    warnings_to_process = False
-    print('\nProcessing ADV Results Table.')
-    # Confirm the required files are in place
-    required_files = ['Master Results ADV', 'Master Results Headings ADV',
-                      'Students to add ADV']
-    ad.confirm_files('ADV Results Table Data', required_files)
-    # Load Master Results ADV file
-    # Load Master Results Headings ADV file
-    # Load Students to add file
-    # Place Master Results into a DataFrame
-    # Drop StudentID, Name, Course columns
-    # Drop students not in Students to add file
-    # Save file
-    ft.process_warning_log(warnings, warnings_to_process)
-    
 
 def process_adv_archive():
     """Prepare upload file for ADV assessments."""
@@ -4543,6 +4524,27 @@ def process_results_students():
     file_name = 'Students_to_add_{}_{}{}'.format(course_code,
                                  ft.generate_time_string(), '.txt')
     ft.save_list_to_text_single(extracted_students, headings, file_name)
+    ft.process_warning_log(warnings, warnings_to_process)
+
+
+def process_results_table():
+    """Prepare upload file for Results Table."""
+    warnings = ['\nProcessing Results Table Data Warnings:\n']
+    warnings_to_process = False
+    print('\nProcessing Results Table.')
+    # Confirm the required files are in place
+    required_files = ['Master Results File', 'Master Results Headings File',
+                      'Students to add File', 'Course Codes']
+    ad.confirm_files('Results Table Data', required_files)
+    # Load Course Codes file
+    # Get course code
+    # Load Master Results file
+    # Load Master Results Headings file
+    # Load Students to add file
+    # Place Master Results into a DataFrame
+    # Drop StudentID, Name, Course columns
+    # Drop students not in Students to add file
+    # Save file
     ft.process_warning_log(warnings, warnings_to_process)
 
 
