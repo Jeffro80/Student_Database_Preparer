@@ -33,6 +33,8 @@ import custtools.admintools as ad
 import custtools.databasetools as db
 import custtools.datetools as da
 import custtools.filetools as ft
+import numpy as np
+import pandas as pd
 import sys
 
 
@@ -3991,7 +3993,21 @@ def preferred_contact(mobile_pref, email_pref):
 
 def process_adv():
     """Prepare upload file for ADV Results Table."""
-    # TO BE WRITTEN
+    warnings = ['\nProcessing ADV Results Table Data Warnings:\n']
+    warnings_to_process = False
+    print('\nProcessing ADV Results Table.')
+    # Confirm the required files are in place
+    required_files = ['Master Results ADV', 'Master Results Headings ADV',
+                      'Students to add ADV']
+    ad.confirm_files('ADV Results Table Data', required_files)
+    # Load Master Results ADV file
+    # Load Master Results Headings ADV file
+    # Load Students to add file
+    # Place Master Results into a DataFrame
+    # Drop StudentID, Name, Course columns
+    # Drop students not in Students to add file
+    # Save file
+    ft.process_warning_log(warnings, warnings_to_process)
     
 
 def process_adv_archive():
