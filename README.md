@@ -742,6 +742,7 @@ the app to run:
 
 - Process results - if file name is changed the original file name is saved.
 - ADV Processing - additional comma added at end of output
+- Find Students Processing - additional comma added at end of output
 - Expired students with an expiry date after today's date will crash (update_expired()
 called from process_find_students()
 
@@ -749,6 +750,7 @@ called from process_find_students()
 
 - Get updated file name when processing results
 - Remove final comma from output of ADV processing
+- Remove final comma from output of Find Students processing
 
 ## Current development step
 

@@ -4415,6 +4415,10 @@ def process_find_students():
     print('\n{} students are to be added to the Results{} table.'.format(
             len(extracted_students), course_code))
     # Save students list as a text file.
+    headings = '' # No headings required
+    file_name = 'Students_to_add_{}{}'.format(ft.generate_time_string(),
+                                 '.txt')
+    ft.save_list_to_text_single(extracted_students, headings, file_name)
     ft.process_warning_log(warnings, warnings_to_process)
 
 
