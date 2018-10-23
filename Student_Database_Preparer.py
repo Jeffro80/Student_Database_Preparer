@@ -370,41 +370,6 @@ def check_da(da_data):
         return False, warnings
 
 
-def check_ec(ec_data):
-    """Return list of warnings for information in Enrolment Codes Data file.
-
-    Checks the Enrolment Codes data for the required information. Required 
-    information that is missing causes an error file to be saved and the 
-    program to exit. Missing or incorrect information that is non-fatal is 
-    appended to a warnings list and returned.
-
-    Args:
-        ec_data (list): A list with the Enrolment Codes data.
-
-    Returns:
-        True if warnings list has had items appended to it, False otherwise.
-        warnings (list): Warnings that have been identified in the data.
-
-    File structure (ec_data):
-        EnrolmentPK, StudentFK.
-    """
-    errors = []
-    warnings = ['\Enrolment Codes Data Warnings:\n']
-    for code in ec_data:
-        # Check that there is Student ID Number
-        if code[1] in (None, ''):
-            errors.append('Student ID Number missing for EnrolmentPK '
-                          '{}.'.format(code[0]))
-    # Check if any errors have been identified, save error log if they have
-    if len(errors) > 0:
-        ft.process_error_log(errors, 'Enrolment_Codes_Data')
-    # Check if any warnings have been identified, return if they have
-    if len(warnings) > 1:
-        return True, warnings
-    else:
-        return False, warnings
-
-
 def check_e_id_data(e_id_data):
     """Return list of warnings for information in Enrolment Details data file.
 
@@ -452,6 +417,41 @@ def check_e_id_data(e_id_data):
     # Check if any errors have been identified, save error log if they have
     if len(errors) > 0:
         ft.process_error_log(errors, 'Enrolment_Sheet')
+    # Check if any warnings have been identified, return if they have
+    if len(warnings) > 1:
+        return True, warnings
+    else:
+        return False, warnings
+
+
+def check_ec(ec_data):
+    """Return list of warnings for information in Enrolment Codes Data file.
+
+    Checks the Enrolment Codes data for the required information. Required 
+    information that is missing causes an error file to be saved and the 
+    program to exit. Missing or incorrect information that is non-fatal is 
+    appended to a warnings list and returned.
+
+    Args:
+        ec_data (list): A list with the Enrolment Codes data.
+
+    Returns:
+        True if warnings list has had items appended to it, False otherwise.
+        warnings (list): Warnings that have been identified in the data.
+
+    File structure (ec_data):
+        EnrolmentPK, StudentFK.
+    """
+    errors = []
+    warnings = ['\Enrolment Codes Data Warnings:\n']
+    for code in ec_data:
+        # Check that there is Student ID Number
+        if code[1] in (None, ''):
+            errors.append('Student ID Number missing for EnrolmentPK '
+                          '{}.'.format(code[0]))
+    # Check if any errors have been identified, save error log if they have
+    if len(errors) > 0:
+        ft.process_error_log(errors, 'Enrolment_Codes_Data')
     # Check if any warnings have been identified, return if they have
     if len(warnings) > 1:
         return True, warnings
@@ -625,7 +625,7 @@ def check_exc(exc_data):
     warnings = ['\nExtension Codes Data Warnings:\n']
     for code in exc_data:
         # Check EnrolmentFK is present and a number
-        if not ad.check_is_int(code[0] ):
+        if not ad.check_is_int(code[0]):
             errors.append('Enrolment code is not a valid number for '
                           'Acceptance Date {}.'.format(code[1]))
         # Check that Acceptance Date is present and is a valid date
@@ -635,6 +635,51 @@ def check_exc(exc_data):
     # Check if any errors have been identified, save error log if they have
     if len(errors) > 0:
         ft.process_error_log(errors, 'Extension_Codes_Data')
+    # Check if any warnings have been identified, return if they have
+    if len(warnings) > 1:
+        return True, warnings
+    else:
+        return False, warnings
+
+
+def check_expiry(exp_data):
+    """Return list of warnings for information in Expiry Dates Data file.
+
+    Checks the Expiry Dates data for the required information. Required 
+    information that is missing causes an error file to be saved and the 
+    program to exit. Missing or incorrect information that is non-fatal is 
+    appended to a warnings list and returned.
+
+    Args:
+        exp_data (list): A list with the expiry dates data.
+
+    Returns:
+        True if warnings list has had items appended to it, False otherwise.
+        warnings (list): Warnings that have been identified in the data.
+
+    File structure (exp_data):
+        EnrolmentFK, CourseFK,	ExpiryDate, Status."""
+    errors = []
+    warnings = ['\nExpiry Dates Data Warnings:\n']
+    for student in exp_data:
+        # Check EnrolmentFK is present and a number
+        if not ad.check_is_int(student[0]):
+            errors.append('Enrolment code is not a valid number for an entry.')
+        # Check CourseFK present
+        if student[1] in ('', None):
+            errors.append('Course code is missing for Enrolment ID {}'.format(
+                    student[0]))
+        # Check Expiry Date present and in correct format
+        if not da.validate_date(student[2].strip()):
+            errors.append('Expiry date is not valid for Enrolment ID {}'.format
+                          (student[0]))
+        # Check status is present
+        if student[3] in ('', None):
+            errors.append('Status is missing for Enrolment ID {}'.format(
+                    student[0]))
+    # Check if any errors have been identified, save error log if they have
+    if len(errors) > 0:
+        ft.process_error_log(errors, 'Expiry_Dates_Data')
     # Check if any warnings have been identified, return if they have
     if len(warnings) > 1:
         return True, warnings
@@ -3660,6 +3705,11 @@ def load_data(source, f_name=''):
         if to_add:
             for item in items_to_add:
                 warnings.append(item)
+    elif source == 'Expiry Dates':
+        to_add, items_to_add = check_expiry(read_data)
+        if to_add:
+            for item in items_to_add:
+                warnings.append(item)
     elif source == 'Extensions Data':
         to_add, items_to_add = check_ex(read_data)
         if to_add:
@@ -4225,12 +4275,23 @@ def process_find_students():
     already been added. Returns a list of students (Enrolment ID) that need to
     be added and saves this as a txt file.    
     """
+    warnings = ['\nProcessing Find Students Data Warnings:\n']
+    warnings_to_process = False
     print('\nProcessing Finding Students.')
     # Confirm the required files are in place
-    required_files = ['Expiry Dates', 'Cuurent Results Table Students']
+    required_files = ['Expiry Dates', 'Cuurent Results Table Students',
+                      'Course Codes']
     ad.confirm_files('Find Students Data', required_files)
     # Get course code to process (base code)
+    course_code = get_course_code()
     # Load Expiry Dates file
+    exp_file_name = 'Expiry_Dates'
+    expiry_data, to_add, warnings_to_add = load_data('Expiry Dates',
+                                                  exp_file_name)
+    if to_add:
+        warnings_to_process = True
+        for line in warnings_to_add:
+            warnings.append(line)
     # Load Current Results Table Students File
     # Check that all students in are base course - save error report and exit
     # if students are found that are not in the base course
@@ -4245,7 +4306,7 @@ def process_find_students():
     # Place all remaining Expired students into students list
     # Display students in students list
     # Save students list as a text file.
-    
+    ft.process_warning_log(warnings, warnings_to_process)
 
 
 def process_graduates():
