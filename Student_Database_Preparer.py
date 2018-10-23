@@ -4293,6 +4293,9 @@ def process_find_students():
         for line in warnings_to_add:
             warnings.append(line)
     # Load Current Results Table Students File
+    current_students = ft.load_headings('Current_Results_Students', 'e')
+    print('Current students:')
+    print('{}'.format(current_students))
     # Check that all students in are base course - save error report and exit
     # if students are found that are not in the base course
     # Drop students status not in Expired, Graduated, Withdrawn
