@@ -526,6 +526,53 @@ Graduates table of the Student Database.
 
 Graduates table of the Student Database.
 
+## Master Results File
+
+### File Name
+
+Master_Results_<Course_Code>.csv where <Course_Code> is the base code e.g. ADV.
+
+### Contents
+
+Grade status of each assessment in the course, for each student. Assessments 
+marked Competent have Competent listed in their Grade column and the date that
+they were marked Competent listed in the Date column, in the format DD/MM/YYYY.
+If an assessment has not been marked Competent, the Grade and Date columns are
+left empty for the assessment.
+
+### Structure
+
+CSV file with EnrolmentID,StudentID,Name,Course and then each assessment in the
+course (Grade column and Date column for each).
+
+### Source
+
+Updated file created using the Assessments Analyser app.
+
+## Master Results Headings File
+
+### File Name
+
+Master_Results_Headings_<Course_Code>.txt where <Course_Code> is the base code
+e.g. ADV.
+
+### Contents
+
+Headings for the Master Results file (first four columns, a column for
+each assessment and a column for each assessment's completion date).
+
+### Structure
+
+Text file with one line of text. First four items are the following words: 
+EnrolmentID,StudentID,Name,Course   
+These four words are followed by the code for each assessment (format M0T1Grade)
+and a date column for the assessment (format M0T1Date).
+
+### Source
+
+Headings can be exported from the Results table of the Student Database. File can be
+copied from the Assessments Analyser App folder.
+
 ## Student_Course File
 
 ### File Name
