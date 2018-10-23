@@ -3931,7 +3931,7 @@ def main():
             elif action == 14:
                 process_adv()
             elif action == 15:
-                process_find_students()
+                process_results_students()
             elif action == high:
                 print('\nIf you have generated any files, please find them '
                       'saved to disk. Goodbye.')
@@ -3961,7 +3961,7 @@ def main_message():
     print('12 Prepare Existing Students Table Data')
     print('13 Prepare Extensions Table Data')
     print('14 Prepare ADV Results Table Data')
-    print('15 Find Students to add to Results Table')
+    print('15 Prepare Results Students File')
     print('16 Exit')
 
 
@@ -4361,67 +4361,6 @@ def process_extensions_data():
     ft.process_warning_log(warnings, warnings_to_process)
 
 
-def process_find_students():
-    """Find students that need to be added to the Results table.
-    
-    Checks the expiry date of students to determine those that need to be
-    added to the Results table (> 1 month passed since expiry).
-    Removes students not in the base course and then removes students that have
-    already been added. Returns a list of students (Enrolment ID) that need to
-    be added and saves this as a txt file.    
-    """
-    warnings = ['\nProcessing Find Students Data Warnings:\n']
-    warnings_to_process = False
-    print('\nProcessing Finding Students.')
-    # Confirm the required files are in place
-    required_files = ['Expiry Dates', 'Cuurent Results Table Students',
-                      'Course Codes']
-    ad.confirm_files('Find Students Data', required_files)
-    # Get course code to process (base code)
-    course_code = get_course_code()
-    # Load Expiry Dates file
-    exp_file_name = 'Expiry_Dates'
-    expiry_data, to_add, warnings_to_add = load_data('Expiry Dates',
-                                                  exp_file_name)
-    if to_add:
-        warnings_to_process = True
-        for line in warnings_to_add:
-            warnings.append(line)
-    # Load Current Results Table Students File
-    current_students = ft.load_headings('Current_Results_Students', 'e')
-    # Check that all students are in base course
-    check_course(expiry_data, course_code)
-    # Drop students whose status is not in Expired, Graduated, Withdrawn
-    expiry_data = drop_status(expiry_data)
-    # Drop students already in results table
-    expiry_data = drop_existing(expiry_data, current_students)
-    # Place graduated students into a separate list
-    graduated = get_students(expiry_data, 'Graduated')
-    # Place expired students into a into a separate list
-    expired = get_students(expiry_data, 'Expired')
-    # Place withdrawn students into a DataFrame
-    withdrawn = get_students(expiry_data, 'Withdrawn')
-    # Drop expired students that expired < 1 month ago
-    expired = update_expired(expired, 30)
-    # Create list to hold Enrolment IDs of students to be returned
-    extracted_students = []
-    # Place all remaining Graduated students into students list
-    extracted_students = add_students(extracted_students, graduated)
-    # Place all remaining Withdrawn students into students list
-    extracted_students = add_students(extracted_students, withdrawn)
-    # Place all remaining Expired students into students list
-    extracted_students = add_students(extracted_students, expired)
-    # Display students in students list
-    print('\n{} students are to be added to the Results{} table.'.format(
-            len(extracted_students), course_code))
-    # Save students list as a text file.
-    headings = '' # No headings required
-    file_name = 'Students_to_add_{}{}'.format(ft.generate_time_string(),
-                                 '.txt')
-    ft.save_list_to_text_single(extracted_students, headings, file_name)
-    ft.process_warning_log(warnings, warnings_to_process)
-
-
 def process_graduates():
     """Process a Graduates Table upload form.
     
@@ -4525,6 +4464,68 @@ def process_old_student_data():
                 'PreviousEdYear, Employment,ReasonForStudy')
     # Save Student data upload file
     ft.save_lists_to_text(cleaned_os, headings, 'Old_Student_Data_')
+    ft.process_warning_log(warnings, warnings_to_process)
+
+
+def process_results_students():
+    """Find students that need to be added to the Results table.
+    
+    Checks the expiry date of students to determine those that need to be
+    added to the Results table (> 1 month passed since expiry).
+    Removes students not in the base course and then removes students that have
+    already been added. Returns a list of students (Enrolment ID) that need to
+    be added and saves this as a txt file.    
+    """
+    warnings = ['\nProcessing Results Students Data Warnings:\n']
+    warnings_to_process = False
+    print('\nProcessing Results Students.')
+    # Confirm the required files are in place
+    required_files = ['Expiry Dates', 'Cuurent Results Table Students',
+                      'Course Codes']
+    ad.confirm_files('Results Students Data', required_files)
+    # Get course code to process (base code)
+    course_code = get_course_code()
+    # Load Expiry Dates file
+    exp_file_name = 'Expiry_Dates_{}'.format(course_code)
+    expiry_data, to_add, warnings_to_add = load_data('Expiry Dates',
+                                                  exp_file_name)
+    if to_add:
+        warnings_to_process = True
+        for line in warnings_to_add:
+            warnings.append(line)
+    # Load Current Results Table Students File
+    current_students = ft.load_headings('Current_Results_Students_{}'.format(
+            course_code), 'e')
+    # Check that all students are in base course
+    check_course(expiry_data, course_code)
+    # Drop students whose status is not in Expired, Graduated, Withdrawn
+    expiry_data = drop_status(expiry_data)
+    # Drop students already in results table
+    expiry_data = drop_existing(expiry_data, current_students)
+    # Place graduated students into a separate list
+    graduated = get_students(expiry_data, 'Graduated')
+    # Place expired students into a into a separate list
+    expired = get_students(expiry_data, 'Expired')
+    # Place withdrawn students into a DataFrame
+    withdrawn = get_students(expiry_data, 'Withdrawn')
+    # Drop expired students that expired < 1 month ago
+    expired = update_expired(expired, 30)
+    # Create list to hold Enrolment IDs of students to be returned
+    extracted_students = []
+    # Place all remaining Graduated students into students list
+    extracted_students = add_students(extracted_students, graduated)
+    # Place all remaining Withdrawn students into students list
+    extracted_students = add_students(extracted_students, withdrawn)
+    # Place all remaining Expired students into students list
+    extracted_students = add_students(extracted_students, expired)
+    # Display students in students list
+    print('\n{} students are to be added to the Results{} table.'.format(
+            len(extracted_students), course_code))
+    # Save students list as a text file.
+    headings = '' # No headings required
+    file_name = 'Students_to_add_{}{}'.format(ft.generate_time_string(),
+                                 '.txt')
+    ft.save_list_to_text_single(extracted_students, headings, file_name)
     ft.process_warning_log(warnings, warnings_to_process)
 
 
