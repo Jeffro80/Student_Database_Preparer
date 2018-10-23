@@ -355,7 +355,8 @@ Courses tab of the Enrolments Google sheet.
 
 ### File Name
 
-Current_Results_Students.txt
+Current_Results_Students_<Course_Code>.txt where <Course_Code> is the base
+code for the course.
 
 ### Contents
 
@@ -451,7 +452,7 @@ Enrolments tab of the Enrolments Google sheet.
 
 ### File Name
 
-Expiry_Dates.csv
+Expiry_Dates_<Course_Code>.csv where <Course_Code> is the base code for the course.
 
 ### Contents
 
