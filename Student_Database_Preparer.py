@@ -3224,6 +3224,23 @@ def get_student_data(cdf, es):
     return student_upload_data, headings
 
 
+def get_students(expiry_data, status):
+    """Return list of students with passed status.
+    
+    Args:
+        expiry_data (list): List of lists of expiry date data.
+        status (str): Status of students to be returned.
+        
+    Returns:
+        students (list): Students with passed status.     
+    """
+    students = []
+    for student in expiry_data:
+        if student[3] == status:
+            students.append(student)
+    return students    
+
+
 def get_study_reason(resp_reason, pl_explain):
     """Return study reason value.
 
@@ -4356,12 +4373,13 @@ def process_find_students():
     # Drop students whose status is not in Expired, Graduated, Withdrawn
     expiry_data = drop_status(expiry_data)
     # Drop students already in results table
-    print('Length of expiry data before processing: {}'.format(len(expiry_data)))
     expiry_data = drop_existing(expiry_data, current_students)
-    print('Length of expiry data after processing: {}'.format(len(expiry_data)))
-    # Place graduated students into a DataFrame and drop from expiry dates data
-    # Place expired students into a DataFrame and drop from expiry dates data
+    # Place graduated students into a separate list
+    graduated = get_students(expiry_data, 'Graduated')
+    # Place expired students into a into a separate list
+    expired = get_students(expiry_data, 'Expired')
     # Place withdrawn students into a DataFrame
+    withdrawn = get_students(expiry_data, 'Withdrawn')
     # Place all remaining Graduated students into students list
     # Place all remaining Withdrawn students into students list
     # Drop expired students that expired < 1 month ago
