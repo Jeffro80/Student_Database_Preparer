@@ -415,6 +415,25 @@ def check_da(da_data):
         return False, warnings
 
 
+def check_df(dataframe):
+    """Check if dataframe contains data.
+    
+    Checks if the dataframe is empty. If it is, the program quits to prevent
+    an error. If not, the program continues.
+    
+    Args:
+        dataframe (dataframe): Dataframe to be checked.
+    """
+    if dataframe.empty:
+        print('\nNo data is left to be processed. The program will now exit. '
+              'Please check the source files and any output files to check '
+              'that there is not an error with the data if this is unexpected'
+              '.')
+        sys.exit()
+    else:
+        return
+
+
 def check_e_id_data(e_id_data):
     """Return list of warnings for information in Enrolment Details data file.
 
@@ -4534,7 +4553,8 @@ def process_results_table():
     print('\nProcessing Results Table.')
     # Confirm the required files are in place
     required_files = ['Master Results File', 'Master Results Headings File',
-                      'Students to add File', 'Course Codes']
+                      'Students to add File', 'Course Codes', 
+                      'Results Table Headings File']
     ad.confirm_files('Results Table Data', required_files)
     # Get course code
     course_code = get_course_code()
@@ -4550,6 +4570,13 @@ def process_results_table():
                                        (course_code), 'e')
     print('Loaded {}.'.format('Master_Results_Headings_{}'.format
           (course_code)))
+     # Load Results Table headings file
+    print('\nLoading {}...'.format('Results_Table_Headings_{}'.format
+          (course_code)))
+    results_headings = ft.load_headings('Results_Table_Headings_{}'.format
+                                       (course_code), 'e')
+    print('Loaded {}.'.format('Results_Table_Headings_{}'.format
+          (course_code)))
     # Load Students to add file
     print('\nLoading {}...'.format('Students_to_add_{}.txt'.format(
             course_code)))
@@ -4558,7 +4585,12 @@ def process_results_table():
     print('Loaded {}.'.format('Students_to_add_{}.txt'.format
           (course_code)))
     # Place Master Results into a DataFrame
+    results_data = pd.DataFrame(data = master_data, columns = master_headings)
+    check_df(results_data)
     # Drop StudentID, Name, Course columns
+    results_data = results_data[results_headings]
+    check_df(results_data)
+    print(results_data)
     # Drop students not in Students to add file
     # Save file
     ft.process_warning_log(warnings, warnings_to_process)
