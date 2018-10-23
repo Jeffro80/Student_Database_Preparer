@@ -3990,7 +3990,8 @@ def preferred_contact(mobile_pref, email_pref):
 
 
 def process_adv():
-    """To Be written"""
+    """Prepare upload file for ADV Results Table."""
+    # TO BE WRITTEN
     
 
 def process_adv_archive():
@@ -4523,8 +4524,8 @@ def process_results_students():
             len(extracted_students), course_code))
     # Save students list as a text file.
     headings = '' # No headings required
-    file_name = 'Students_to_add_{}{}'.format(ft.generate_time_string(),
-                                 '.txt')
+    file_name = 'Students_to_add_{}_{}{}'.format(course_code,
+                                 ft.generate_time_string(), '.txt')
     ft.save_list_to_text_single(extracted_students, headings, file_name)
     ft.process_warning_log(warnings, warnings_to_process)
 
