@@ -4380,9 +4380,10 @@ def process_find_students():
     expired = get_students(expiry_data, 'Expired')
     # Place withdrawn students into a DataFrame
     withdrawn = get_students(expiry_data, 'Withdrawn')
+    # Drop expired students that expired < 1 month ago
+    expired = update_expired(expired, 30)
     # Place all remaining Graduated students into students list
     # Place all remaining Withdrawn students into students list
-    # Drop expired students that expired < 1 month ago
     # Place all remaining Expired students into students list
     # Display students in students list
     # Save students list as a text file.
@@ -4869,6 +4870,27 @@ def tutors_to_dict(cleaned_tu):
         tutor_dict[key] = value
     # ad.debug_dict(tutor_dict)
     return tutor_dict
+
+
+def update_expired(expired, num_days):
+    """Return students that expired more than the passed number of days ago.
+    
+    Compares the student's expiry date to the cut off date passed. If the
+    expiry date is earlier then the student is added to the returned list.
+    
+    Args:
+        expired (list): List of lists of student expiry date data.
+        num_days (int): Number of days to work back from today.
+        
+    Returns:
+        updated_expired (list): List of lists for students expiring before the
+        passed date (todays date - num_days).
+    """
+    updated_expired = []
+    for student in expired:
+        if da.get_days_past(student[2]) > num_days:
+            updated_expired.append(student)
+    return updated_expired
 
 
 def validate_wa(att_data, swc_data, swc_si_pos, swc_wi_pos, att_si_pos,

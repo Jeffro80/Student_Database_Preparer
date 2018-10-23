@@ -447,7 +447,7 @@ Enrolments tab of the Enrolments Google sheet.
 
 ### File Name
 
-expiry_dates.csv
+Expiry_Dates.csv
 
 ### Contents
 
@@ -742,6 +742,8 @@ the app to run:
 
 - Process results - if file name is changed the original file name is saved.
 - ADV Processing - additional comma added at end of output
+- Expired students with an expiry date after today's date will crash (update_expired()
+called from process_find_students()
 
 ## Items to fix
 
@@ -771,3 +773,4 @@ functions)
 - Course attendance - take course code and use in save file name rather than time
 - Remove warning for Course date missing for ADV-ON-001
 - Update file names (e.g. replace Tutor_IDs.csv with Tutor IDs) in print statements
+- Add check that Expired students have an expiry date before today's date
