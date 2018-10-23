@@ -31,21 +31,6 @@ dialog.
 
 # Functions
 
-## Prepare ADV Results Table Data
-
-Prepares the upload file for updating the ResultsADV table in the Student 
-Database.
-
-### Required Files
-
-- Course Assessment Data File
-- Assessments File
-- Enrolment IDs File
-
-### Notes
-
-Function needs rewriting.
-
 ## Prepare Course Attendance Table Data
 
 Prepares the upload file for updating the Course Attendance table in the Student Database.
@@ -125,6 +110,22 @@ in the Student Database.
 
 - Output file requires last comma to be manually deleted.
 
+## Prepare Results Table Data
+
+Prepares the upload file for updating the Results<Course_Code> table in the Student 
+Database.
+
+### Required Files
+
+- Course Codes File
+- Master Results <Course_Code> File
+- Master Results Headings <Course_Code> File
+- Students to add <Course_Code> File
+
+### Notes
+
+Function under development.
+
 ## Prepare Students Table Data
 
 Prepares the upload file for updating the Students table in the Student Database.
@@ -191,7 +192,7 @@ Assessment name for each assessment in the base course.
 
 ### Structure
 
-CSV file with the full name of each assessment on the ADV course.
+CSV file with the full name of each assessment on the base course.
 
 ### Source
 
@@ -218,24 +219,6 @@ form.
 
 Exported from the forms section of the Fit College website Admin area (Enrolment
 Form).
-
-## Course Assessment Data File
-
-### File Name
-
-\<TBC>
-
-### Contents
-
-\<TBC>
-
-### Structure
-
-\<TBC>
-
-### Source
-
-\<TBC>
 
 ## Course Attendance Data File
 
@@ -740,13 +723,15 @@ the app to run:
 - databasetools from custtools
 - datetools from custtools
 - filetools from custtools
+- numpy
+- pandas
 
 # Development
 
 ## Known bugs
 
 - Process results - if file name is changed the original file name is saved.
-- ADV Processing - additional comma added at end of output
+- REsults Table Processing - additional comma added at end of output
 - Find Students Processing - additional comma added at end of output
 - Expired students with an expiry date after today's date will crash (update_expired()
 called from process_find_students()
@@ -754,24 +739,21 @@ called from process_find_students()
 ## Items to fix
 
 - Get updated file name when processing results
-- Remove final comma from output of ADV processing
+- Remove final comma from output of Results Table processing
 - Remove final comma from output of Find Students processing
 
 ## Current development step
 
-- ADV Results processing (Finding students to add)
+- Process Results Table data
 
 ## Required development steps
 
-- Find students to add to Results table
 - Prepare Results Table File Upload
 - Add loading and loaded statements to Extensions and Graduates processing
 
 ## Future additions
 
 - Add function: Filter students by course (e.g. for withdrawn students in Results
-functions)
-- Add function: Extract students not already in Results table (e.g. for Results
 functions)
 - Add function: Compare Results_update students with Master_Results file
 - Group warnings by warning type e.g. Mobile number
