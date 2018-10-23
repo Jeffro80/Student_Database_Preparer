@@ -298,6 +298,28 @@ def check_cdf(combined_data):
         return False, warnings
 
 
+def check_course(expiry_data, course_code):
+    """Check each course code is in the base course.
+    
+    Checks that only students enrolled in the base course (e.g. ADV) are
+    present in the Expiry Date data. If the wrong data is found, an error
+    file is created and the program exits.
+    
+    Args:
+        expiry_data (list): List of lists holding expiry dates data.
+        course_code (str): Three letter course code, e.g. ADV.
+    """
+    errors = []
+    for student in expiry_data:
+        # Check first three letters of course code match course_code
+        if student[1][:3] != course_code:
+             errors.append('Incorrect course for the following student '
+                           'Enrolment ID: {}.'.format(student[0]))
+     # Check if any errors have been identified, save error log if they have
+    if len(errors) > 0:
+        ft.process_error_log(errors, 'Expiry_Data_Course_Codes')    
+
+
 def check_ctd(source_tutor_data, source, source_type):
     """Check for errors in the Workshop or Course-Tutor data file.
 
@@ -4296,7 +4318,8 @@ def process_find_students():
     current_students = ft.load_headings('Current_Results_Students', 'e')
     print('Current students:')
     print('{}'.format(current_students))
-    # Check that all students in are base course - save error report and exit
+    # Check that all students are in base course - save error report and exit
+    check_course(expiry_data, course_code)
     # if students are found that are not in the base course
     # Drop students status not in Expired, Graduated, Withdrawn
     # Drop students already in results table
