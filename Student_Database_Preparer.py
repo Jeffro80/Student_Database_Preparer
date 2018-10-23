@@ -36,6 +36,27 @@ import custtools.filetools as ft
 import sys
 
 
+def add_students(initial_students, additional_students):
+    """Return a list with the additional_students added.
+    
+    Makes a copy of the initial list and adds the EnrolmentID from the
+    additional students list to it.
+    
+    Args:
+        initial_students (list): Initial list of student Enrolment IDs.
+        additional_students (list): List of lists with student data to add.
+        
+    Returns:
+        updated_students (list): List with updated students.
+    """
+    # Make a copy of the initial_students list
+    updated_students = copy.deepcopy(initial_students)
+    # Add in Enrolment IDs from the additional_students list
+    for student in additional_students:
+        updated_students.append(student[0])
+    return updated_students
+    
+
 def check_ass_data(ass_data, number):
     """Return list of warnings for information in Assessments Data file.
 
@@ -4382,10 +4403,17 @@ def process_find_students():
     withdrawn = get_students(expiry_data, 'Withdrawn')
     # Drop expired students that expired < 1 month ago
     expired = update_expired(expired, 30)
+    # Create list to hold Enrolment IDs of students to be returned
+    extracted_students = []
     # Place all remaining Graduated students into students list
+    extracted_students = add_students(extracted_students, graduated)
     # Place all remaining Withdrawn students into students list
+    extracted_students = add_students(extracted_students, withdrawn)
     # Place all remaining Expired students into students list
+    extracted_students = add_students(extracted_students, expired)
     # Display students in students list
+    print('\n{} students are to be added to the Results{} table.'.format(
+            len(extracted_students), course_code))
     # Save students list as a text file.
     ft.process_warning_log(warnings, warnings_to_process)
 
