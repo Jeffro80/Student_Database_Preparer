@@ -59,6 +59,22 @@ def add_students(initial_students, additional_students):
     return updated_students
     
 
+def apply_students_filter(student, students):
+    """Convert to NaN students that do not appear in the students list.
+    
+    Args:
+        student (str): Enrolment ID for student entry.
+        students (list): List of Enrolment IDs to be included.
+        
+    Returns:
+        student if present in students, NaN if not.    
+    """
+    if student in students:
+        return student
+    else:
+        return np.nan
+
+
 def check_ass_data(ass_data, number):
     """Return list of warnings for information in Assessments Data file.
 
@@ -4585,13 +4601,15 @@ def process_results_table():
     print('Loaded {}.'.format('Students_to_add_{}.txt'.format
           (course_code)))
     # Place Master Results into a DataFrame
-    results_data = pd.DataFrame(data = master_data, columns = master_headings)
-    check_df(results_data)
+    results_df = pd.DataFrame(data = master_data, columns = master_headings)
+    check_df(results_df)
     # Drop StudentID, Name, Course columns
-    results_data = results_data[results_headings]
-    check_df(results_data)
-    print(results_data)
+    results_df = results_df[results_headings]
+    check_df(results_df)
     # Drop students not in Students to add file
+    results_df['EnrolmentID'] = results_df['EnrolmentID'].apply(
+            apply_students_filter, args=(include_students,))
+    results_df.dropna(subset=['EnrolmentID'], inplace=True)
     # Save file
     ft.process_warning_log(warnings, warnings_to_process)
 
