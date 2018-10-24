@@ -4613,8 +4613,10 @@ def process_results_table():
     # Add empty column for ID to start of DataFrame
     results_df.insert(0, 'ID', '')
     # Save file
-    results_df.to_csv('{}_Results_Table_Data_{}.txt'.format(course_code,
-                      ft.generate_time_string()), index=False)
+    file_name = '{}_Results_Table_Data_{}.txt'.format(course_code,
+                      ft.generate_time_string())
+    results_df.to_csv(file_name, index=False)
+    print('\nFile has been saved to {}'.format(file_name))
     ft.process_warning_log(warnings, warnings_to_process)
 
 
