@@ -813,11 +813,8 @@ called from process_find_students()
 
 ## Current development step
 
-- Process Results Table data
-
 ## Required development steps
 
-- Prepare Results Table File Upload
 - Add loading and loaded statements to Extensions and Graduates processing
 
 ## Future additions
