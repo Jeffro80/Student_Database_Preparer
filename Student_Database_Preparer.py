@@ -4610,7 +4610,11 @@ def process_results_table():
     results_df['EnrolmentID'] = results_df['EnrolmentID'].apply(
             apply_students_filter, args=(include_students,))
     results_df.dropna(subset=['EnrolmentID'], inplace=True)
+    # Add empty column for ID to start of DataFrame
+    results_df.insert(0, 'ID', '')
     # Save file
+    results_df.to_csv('{}_Results_Table_Data_{}.txt'.format(course_code,
+                      ft.generate_time_string()), index=False)
     ft.process_warning_log(warnings, warnings_to_process)
 
 
