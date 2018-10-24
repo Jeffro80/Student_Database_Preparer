@@ -121,6 +121,7 @@ Database.
 - Master Results <Course_Code> File
 - Master Results Headings <Course_Code> File
 - Students to add <Course_Code> File
+- Results Table Headings <Course_Code> File
 
 ### Notes
 
@@ -572,6 +573,27 @@ and a date column for the assessment (format M0T1Date).
 
 Headings can be exported from the Results table of the Student Database. File can be
 copied from the Assessments Analyser App folder.
+
+## Results Table Headings File
+
+### File Name
+
+Results_Table_Headings_<Course_Code>.txt where <Course_Code> is the base code
+e.g. ADV.
+
+### Contents
+
+Headings for the Results table output file. Contains the headings from the Results
+table in the Student Database for the relevant base course.
+
+### Structure
+
+TXT file with the column headings on one line, separated by commas with no trailing
+spaces.
+
+### Source
+
+Results table for the relevant course from the Student Database.
 
 ## Student_Course File
 
