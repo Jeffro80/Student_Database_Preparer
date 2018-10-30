@@ -3750,7 +3750,9 @@ def load_data(source, f_name=''):
     if f_name in (None, ''): # Get from user
         read_data = ft.get_csv_fname_load(source)
     else:
+        print('\nLoading {}...'.format(f_name))
         read_data = ft.load_csv(f_name, 'e')
+        print('Loaded {}.'.format(f_name))
     # Check that data has entries for each required column
     if source == 'ADV Assessments':
         # Update with required number of assessments if changed
@@ -4070,7 +4072,7 @@ def process_course_attendance():
     print('\nProcessing Course Attendance Data Upload Form.')
     # Confirm the required files are in place
     required_files = ['Course Attendance Data File', 'Student-Course File',
-                      'dates.csv', 'Course_IDs.csv']
+                      'Dates File', 'Course IDs File']
     ad.confirm_files('Course Attendance Data', required_files)
     # Get name for Course Attendance Data File and then load
     att_data, to_add, warnings_to_add = load_data('Course Attendance')
@@ -4142,7 +4144,7 @@ def process_courses_data():
     warnings_to_process = False
     print('\nProcessing Courses Data Upload Form.')
     # Confirm the required files are in place
-    required_files = ['Courses Data File', 'Course_IDs.csv']
+    required_files = ['Courses Data File', 'Course IDs File']
     ad.confirm_files('Course Data', required_files)
     # Get name for Course Data File and then load
     course_data, to_add, warnings_to_add = load_data('Course Data')
@@ -4187,8 +4189,8 @@ def process_course_tutors_data():
     warnings_to_process = False
     print('\nProcessing Course Tutors Data Upload Form.')
     # Confirm the required files are in place
-    required_files = ['Course Tutors Data File', 'Course_Tutors.csv',
-                      'Course_IDs.csv', 'Tutor_IDs.csv']
+    required_files = ['Course Tutors Data File', 'Course Tutors File',
+                      'Course IDs File', 'Tutor IDs File']
     ad.confirm_files('Course Tutor Data', required_files)
     # Get name for Course Tutor Data File and then load
     ct_data, to_add, warnings_to_add = load_data('Course Tutors')
@@ -4254,8 +4256,8 @@ def process_enrolment_data():
     warnings_to_process = False
     print('\nProcessing Enrolment Data Upload Form.')
     # Confirm the required files are in place
-    required_files = ['Enrolment Data', 'Student_IDs.csv', 'Tutor_ID.csv',
-                      'Course_IDs.csv']
+    required_files = ['Enrolment Data', 'Student IDs File', 'Tutor IDs File',
+                      'Course IDs File']
     ad.confirm_files('Enrolment Data', required_files)
     # Get name for Enrolment Sheet data and then load
     es_data, to_add, warnings_to_add = load_data('Enrolment Sheet')
@@ -4322,8 +4324,8 @@ def process_extensions_data():
     warnings_to_process = False
     print('\nProcessing Extensions Data Upload Form.')
     # Confirm the required files are in place
-    required_files = ['Extensions Data', 'Enrolment_Codes.csv',
-                      'Extension_Codes.csv']
+    required_files = ['Extensions Data', 'Enrolment Codes File',
+                      'Extension Codes File']
     ad.confirm_files('Extensions Data', required_files)
     # Get name for Extensions data and then load
     ext_data, to_add, warnings_to_add = load_data('Extensions Data')
@@ -4381,8 +4383,8 @@ def process_graduates():
     warnings_to_process = False
     print('\nProcessing Graduate Data Upload Form.')
     # Confirm the required files are in place
-    required_files = ['Graduate Data', 'Enrolment_Codes.csv',
-                      'Graduates_Current.csv']
+    required_files = ['Graduate Data', 'Enrolment Codes File',
+                      'Graduates Current File']
     ad.confirm_files('Graduate Data', required_files)
     # Get name for Graduate data and then load
     grad_data, to_add, warnings_to_add = load_data('Graduates Data')
@@ -4439,7 +4441,7 @@ def process_old_student_data():
     warnings_to_process = False
     print('\nProcessing Existing Student Data Upload Form.')
     # Confirm the required files are in place
-    required_files = ['Old Students Enrolment Data File', 'Student_IDs.csv']
+    required_files = ['Old Students Enrolment Data File', 'Student IDs File']
     ad.confirm_files('Student Data', required_files)
     # Get name for Old Students Enrolment Data File and then load
     os_data, to_add, warnings_to_add = load_data('Old Students')
@@ -4608,7 +4610,7 @@ def process_student_data():
     print('\nProcessing Student Data Upload Form.')
     # Confirm the required files are in place
     required_files = ['Combined Data File', 'Enrolment Data Sheet',
-                      'Course_IDs.csv', 'Student_IDs.csv']
+                      'Course IDs File', 'Student IDs File']
     ad.confirm_files('Student Data', required_files)
     # Get name for Combined Data form and then load
     cdf_data, to_add, warnings_to_add = load_data('Combined Data Form')
@@ -4700,7 +4702,7 @@ def process_tutors_data():
     warnings_to_process = False
     print('\nProcessing Tutor Data Upload Form.')
     # Confirm the required files are in place
-    required_files = ['Tutor Data File', 'Tutor_IDs.csv']
+    required_files = ['Tutor Data File', 'Tutor IDs File']
     ad.confirm_files('Tutor Data', required_files)
     # Get name for Tutor Data and then load
     tutor_data, to_add, warnings_to_add = load_data('Tutor Data')
@@ -4740,7 +4742,7 @@ def process_workshop_attendance():
     print('\nProcessing Workshop Attendance Data Upload Form.')
     # Confirm the required files are in place
     required_files = ['Workshop Attendance Data File', 'Student-Workshop File',
-                      'Workshop_IDs.csv']
+                      'Workshop IDs File']
     ad.confirm_files('Workshop Attendance Data', required_files)
     # Get name for Workshop Attendance Data File and then load
     att_data, to_add, warnings_to_add = load_data('Workshop Attendance')
@@ -4792,7 +4794,7 @@ def process_workshops_data():
     warnings_to_process = False
     print('\nProcessing Workshops Data Upload Form.')
     # Confirm the required files are in place
-    required_files = ['Workshops Data File', 'Workshops_IDs.csv']
+    required_files = ['Workshops Data File', 'Workshop IDs File']
     ad.confirm_files('Workshops Data', required_files)
     # Get name for Workshops Data File and then load
     workshops_data, to_add, warnings_to_add = load_data('Workshop Data')
@@ -4837,8 +4839,8 @@ def process_workshop_tutors_data():
     warnings_to_process = False
     print('\nProcessing Workshop Tutors Data Upload Form.')
     # Confirm the required files are in place
-    required_files = ['Workshop Tutors Data File', 'Workshop_Tutors.csv',
-                      'Workshop_IDs.csv', 'Tutor_Ids.csv']
+    required_files = ['Workshop Tutors Data File', 'Workshop Tutors File',
+                      'Workshop IDs File', 'Tutor IDs File']
     ad.confirm_files('Workshop Tutor Data', required_files)
     # Get name for Workshop Tutor Data File and then load
     wt_data, to_add, warnings_to_add = load_data('Workshop Tutor Data')
