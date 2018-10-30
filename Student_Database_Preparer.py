@@ -150,10 +150,12 @@ def check_cc(course_codes):
     File structure (course_codes):
         CoursePK, CourseDate
     """
+    # Course codes to be excluded from warnings messages
+    exempt = ['ADV-ON-001']
     errors = []
     warnings = ['\nCourse Codes Warnings:\n']
     for course in course_codes:
-        if course[1] in (None, ''):
+        if course[1] in (None, '') and course[0] not in exempt:
             warnings.append('Course Date is missing for course code {}.'.format
                             (course[0]))
     # Check if any errors have been identified, save error log if they have
