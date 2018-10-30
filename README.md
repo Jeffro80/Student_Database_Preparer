@@ -800,7 +800,6 @@ the app to run:
 ## Known bugs
 
 - Process results - if file name is changed the original file name is saved.
-- Results Table Processing - additional comma added at end of output
 - Find Students Processing - additional comma added at end of output
 - Expired students with an expiry date after today's date will crash (update_expired()
 called from process_find_students()
@@ -808,7 +807,6 @@ called from process_find_students()
 ## Items to fix
 
 - Get updated file name when processing results
-- Remove final comma from output of Results Table processing
 - Remove final comma from output of Find Students processing
 
 ## Current development step
