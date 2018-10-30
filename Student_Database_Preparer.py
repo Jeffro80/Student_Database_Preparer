@@ -1,32 +1,8 @@
 # Access Data - Student Database
-# Version 1.0 23 October 2018
+# Version 1.0 31 October 2018
 # Created by Jeff Mitchell
 # Takes in data files and prepares them for uploading into the
 # Student Database
-
-
-# Still to do:
-# - Check Enrolment Sheet and make conform to 'Email and Mobile'
-# - Remove warning for Course Code missing for ADV-ON-001
-
-# Future additions:
-# - Group warnings e.g. by student or warning type (e.g. mobile number)
-# - Add progress status to long processes
-# - Graduates certificates - strip and remove any spaces in code
-# - Course attendance- take course code and use in save file rather than time
-
-
-# To Fix:
-# - Add loading and loaded statements to Extensions processing, Graduates
-# - Additional comma at end of ADV processing needs removal if possible
-# - Check if 0 being added to mobile numbers (works for phone numbers)
-
-# Known issues:
-# - Won't catch empty Student ID number (or any first row field) as does not
-# - read it as a line
-# - Process results - if file name changed, original file name saved
-# - need to get updated file name somehow
-
 
 import copy
 import custtools.admintools as ad
