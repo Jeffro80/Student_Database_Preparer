@@ -4111,11 +4111,8 @@ def process_course_attendance():
     course = input('What is the code for the course being processed? --> ')
     # Check that is an actual course
     check_valid_course(cleaned_cc, course, 0, 'Course_Codes')
-    # ad.debug_list(att_data)
-    # ad.debug_list(date_data)
     # Clean the dates data
     cleaned_date_data = clean_pt_dates(date_data)
-    # print(cleaned_date_data)
     # Check that each student is actually enrolled in the course
     to_add, warnings_to_add = check_valid_scc(att_data, scc_data, course, 0, 
                                               'Course_Attendance_Data_')
@@ -4131,7 +4128,8 @@ def process_course_attendance():
     # Create data for file upload
     save_data, headings = get_attendance_upload(att_data, cleaned_date_data,
                                                 course)
-    ft.save_lists_to_text(save_data, headings, 'Course_Attendance_')
+    ft.save_lists_to_text(save_data, headings, 'Course_Attendance_{}_'.format(
+            course))
     ft.process_warning_log(warnings, warnings_to_process)
 
 
