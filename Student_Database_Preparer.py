@@ -2975,45 +2975,6 @@ def get_grade(raw_grade):
         return grade
 
 
-def get_headings(code):
-    """Return headings for save file.
-    
-    Adds each assessment name to the list of headings. Headings are identified
-    based on the code that is passed.
-    
-    Args:
-        code (str): Course code.
-    
-    Returns:
-        headings (list): List of headings.
-    """
-    if code == 'ADV':
-        headings = ('ID,EnrolmentFK,M0T1Grade,M0T1Date,M0T2Grade,M0T2Date,'
-                    'M0T3Grade,M0T3Date,M1L1Grade,M1L1Date,M2Q1Grade,M2Q1Date,'
-                    'M2T1Grade,M2T1Date,M2T2Grade,M2T2Date,M2T3Grade,M2T3Date,'
-                    'M2T4Grade,M2T4Date,M2T5Grade,M2T5Date,M3Q1Grade,M3Q1Date,'
-                    'M3L1Grade,M3L1Date,M3T1Grade,M3T1Date,M3T2Grade,M3T2Date,'
-                    'M3T3Grade,M3T3Date,M4Q1Grade,M4Q1Date,M4T1Grade,M4T1Date,'
-                    'M4T2Grade,M4T2Date,M4T3Grade,M4T3Date,M4T4Grade,M4T4Date,'
-                    'M5Q1Grade,M5Q1Date,M5T1Grade,M5T1Date,M5T2Grade,M5T2Date,'
-                    'M5T3Grade,M5T3Date,M5T4Grade,M5T4Date,M6Q1Grade,M6Q1Date,'
-                    'M6T1Grade,M6T1Date,M6T2Grade,M6T2Date,M6T3Grade,M6T3Date,'
-                    'M6T4Grade,M6T4Date,M6T5Grade,M6T5Date,M7Q1Grade,M7Q1Date,'
-                    'M7T1Grade,M7T1Date,M7T2Grade,M7T2Date,M7T3Grade,M7T3Date,'
-                    'M7T4Grade,M7T4Date,M7T5Grade,M7T5Date,M8Q1Grade,M8Q1Date,'
-                    'M8T1Grade,M8T1Date,M8T2Grade,M8T2Date,M8T3Grade,M8T3Date,'
-                    'M8T4Grade,M8T4Date,M8T5Grade,M8T5Date,M9Q1Grade,M9Q1Date,'
-                    'M9T1Grade,M9T1Date,M9T2Grade,M9T2Date,M9T3Grade,M9T3Date,'
-                    'M9T4Grade,M9T4Date,M9T5Grade,M9T5Date,M9T6Grade,M9T6Date,'
-                    'M10Q1Grade,M10Q1Date,M10T1Grade,M10T1Date,M10T2Grade,'
-                    'M10T2Date,M10T3Grade,M10T3Date,M10T4Grade,M10T4Date,'
-                    'M11Q1Grade,M11Q1Date,M11T1Grade,M11T1Date,M11T2Grade,'
-                    'M11T2Date,M11T3Grade,M11T3Date,M12Q1Grade,M12Q1Date,'
-                    'M12T1Grade,M12T1Date,M12T2Grade,M12T2Date,M12T3Grade,'
-                    'M12T3Date,M12T4Grade,M12T4Date,M13T1Grade,M13T1Date')
-    return headings
-
-
 def get_how_heard(h_reason, pl_state):
     """Return how heard value.
 
@@ -4004,62 +3965,6 @@ def preferred_contact(mobile_pref, email_pref):
     elif mobile_pref.strip() != 'Mobile' and email_pref.strip() != 'Email':
         preference = ''
     return preference
-
-
-def process_adv_archive():
-    """Prepare upload file for ADV assessments."""
-    # TO BE REWRITTEN
-    warnings = ['\nProcessing ADV Assessment Data Warnings:\n']
-    warnings_to_process = False
-    print('\nProcessing ADV Assessments.')
-    # Confirm the required files are in place
-    required_files = ['Course Assessment Data File', 'adv_assessments',
-                      'enrolment_ids.csv']
-    ad.confirm_files('Course Assessment Data', required_files)
-    # Load adv_assessments file (list of assessment names)
-    adv_ass_data, to_add, warnings_to_add = load_data('ADV Assessments',
-                                                      'adv_assessments')
-    if to_add:
-        warnings_to_process = True
-        for line in warnings_to_add:
-            warnings.append(line)
-    # Convert Assessment Names to a list of names
-    ass_names_listed = ad.extract_lists(adv_ass_data)
-    # print('\nClean Assessment Names: {}'.format(ass_names_listed))
-    # Load course assessment data file (student results)
-    
-    results_data, to_add, warnings_to_add = load_data('Student_Results_')
-    if to_add:
-        warnings_to_process = True
-        for line in warnings_to_add:
-            warnings.append(line)
-    # print(results_data)
-    # Load list of enrolment details. Used to check correct e_id entered
-    e_id_name = 'enrolment_ids'
-    e_id_data, to_add, warnings_to_add = load_data('Enrolment IDs', e_id_name)
-    if to_add:
-        warnings_to_process = True
-        for line in warnings_to_add:
-            warnings.append(line)
-    # Get student enrolment ID (user input)
-    e_id = input('\nWhat is the Enrolment ID for the student? --> ')
-    # Check that enrolment ID is correct and get Student ID, First Name and Last Name
-    e_id, s_id, s_fn, s_ln = validate_e_id(e_id, e_id_data)
-    # Get from course assessment data just the rows that contain assessments
-    cleaned_results = clean_results(results_data, ass_names_listed) 
-    # Look for item[0] to be in adv_assessments
-    # print(cleaned_results)
-    # Process data to get info for student
-    upload_data = get_results_upload_data(cleaned_results, e_id)
-    # print(upload_data)
-    headings = get_headings('ADV')
-    f_name = '{}_{}_{}_Grades_Upload_File.txt'.format(s_id, s_fn, s_ln)
-    # Save upload data to a text file
-    ft.save_list_to_text_single(upload_data, headings, f_name)
-    # Display output so user can check without opening file
-    print('\nText output:\n')
-    print(upload_data)
-    ft.process_warning_log(warnings, warnings_to_process)
 
 
 def process_course_attendance():
