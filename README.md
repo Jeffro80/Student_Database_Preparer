@@ -809,7 +809,7 @@ called from process_find_students()
 
 ## Current development step
 
-- Load headings file for course rather than hard coding in get_headings(code)
+- Get updated file name when processing results
 
 ## Required development steps
 
@@ -824,5 +824,4 @@ functions)
 - Add progress status to processes that take a while to run
 - Graduates certificate - strip and remove any spaces
 - Add check that Expired students have an expiry date before today's date
-- Load headings file for course rather than hard coding in get_headings(code)
 - Refactor to handle CPDs - add base code selection to dictate functions called
