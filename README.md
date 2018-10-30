@@ -800,18 +800,16 @@ the app to run:
 ## Known bugs
 
 - Process results - if file name is changed the original file name is saved.
-- Find Students Processing - additional comma added at end of output
 - Expired students with an expiry date after today's date will crash (update_expired()
 called from process_find_students()
 
 ## Items to fix
 
 - Get updated file name when processing results
-- Remove final comma from output of Find Students processing
 
 ## Current development step
 
-- Fix additional commas in output
+- Add loading statements
 
 ## Required development steps
 
