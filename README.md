@@ -17,8 +17,8 @@ update the required tables.
 ## Version
 
 Version Number 1.0  
-App last updated 25 October 2018  
-Readme last updated 24 October 2018
+App last updated 31 October 2018  
+Readme last updated 31 October 2018
 
 # Operation
 
@@ -800,7 +800,7 @@ the app to run:
 ## Known bugs
 
 - Process results - if file name is changed the original file name is saved.
-- REsults Table Processing - additional comma added at end of output
+- Results Table Processing - additional comma added at end of output
 - Find Students Processing - additional comma added at end of output
 - Expired students with an expiry date after today's date will crash (update_expired()
 called from process_find_students()
@@ -812,6 +812,8 @@ called from process_find_students()
 - Remove final comma from output of Find Students processing
 
 ## Current development step
+
+- Fix additional commas in output
 
 ## Required development steps
 
@@ -829,3 +831,5 @@ functions)
 - Remove warning for Course date missing for ADV-ON-001
 - Update file names (e.g. replace Tutor_IDs.csv with Tutor IDs) in print statements
 - Add check that Expired students have an expiry date before today's date
+- Load headings file for course rather than hard coding in get_headings(code)
+- Refactor to handle CPDs - add base code selection to dictate functions called
