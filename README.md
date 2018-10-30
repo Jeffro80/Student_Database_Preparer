@@ -809,7 +809,7 @@ called from process_find_students()
 
 ## Current development step
 
-- Course attendance - take course code and use in save file name rather than time
+- Load headings file for course rather than hard coding in get_headings(code)
 
 ## Required development steps
 
@@ -823,7 +823,6 @@ functions)
 - Group warnings by warning type e.g. Mobile number
 - Add progress status to processes that take a while to run
 - Graduates certificate - strip and remove any spaces
-- Course attendance - take course code and use in save file name rather than time
 - Add check that Expired students have an expiry date before today's date
 - Load headings file for course rather than hard coding in get_headings(code)
 - Refactor to handle CPDs - add base code selection to dictate functions called
