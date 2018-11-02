@@ -825,3 +825,11 @@ functions)
 - Graduates certificate - strip and remove any spaces
 - Add check that Expired students have an expiry date before today's date
 - Refactor to handle CPDs - add base code selection to dictate functions called
+- Automatically load cdf, es, in Prepare Students Table
+- Add file name for cdf, es to required file print out in Prepare Students Table
+- Automatically load es in Prepare Enrolments Table
+- Add file name for es to required file print out in Prepare Enrolments Table
+- Automatically load grads data in Prepare Graduates Table
+- Add file name for grads data to required file print out in Prepare Graduates Table
+- Automatically load extensions data in Prepare Extensions Table
+- Add file name for extensions data to required file print out in Prepare Extensions Table
